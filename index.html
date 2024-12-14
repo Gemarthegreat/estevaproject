@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+</head>
+<body>
+    <form id="form">
+        <h2>Sign Up</h2>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" id="txt_Name"></td>
+            </tr>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" id="txt_Username"></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" id="txt_Password"></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="signup()">SIGN UP</button></td>
+            </tr>
+        </table>
+
+        <h2>Log In</h2>
+        <table>
+            <tr>
+                <td>Username</td>
+                <td><input type="text" id="txt_login_username"></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" id="txt_login_password"></td>
+            </tr>
+            <tr>
+                <td><button type="button" onclick="login()">LOG IN</button></td>
+            </tr>
+        </table>
+    </form>
+    
+    <script>
+        let users = []; // Array to store user data
+
+        function signup() {
+            const name = document.getElementById("txt_Name").value;
+            const username = document.getElementById("txt_Username").value;
+            const password = document.getElementById("txt_Password").value;
+
+            if (username !== "" && password !== "" && name !== "") {
+                // Check if the username already exists
+                const existingUser  = users.find(user => user.username === username);
+                if (existingUser ) {
+                    alert("Username already exists. Please choose a different username.");
+                } else {
+                    // Add new user to the array
+                    users.push({ name, username, password });
+                    alert("You have successfully signed up!");
+                    console.log("Name is: " + name);
+                    console.log("Username is: " + username);
+                    console.log("Password is: " + password);
+                }
+            } else {
+                alert("Please fill in all fields!");
+            }
+        }
+
+        function login() {
+            const username = document.getElementById("txt_login_username").value;
+            const password = document.getElementById("txt_login_password").value;
+
+            if (username !== "" && password !== "") {
+                // Check if the user exists and the password matches
+                const user = users.find(user => user.username === username && user.password === password);
+                if (user) {
+                    alert("Login successful! Welcome, " + user.name);
+                } else {
+                    alert("Incorrect username or password. Please try again.");
+                }
+            } else {
+                alert("Please fill in all fields!");
+            }
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100%;
+            height: 100vh;
+            background-color: rgb(196, 193, 189);
+        }
+        header {
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid black;
+            height: 10vh;
+            background-color: rgb(196, 193, 189);
+        }
+        h1 {
+            font-size: 3.8vw;
+            padding-top: .2vw;
+            color: rgb(2, 2, 2);
+            margin-left: 1vw;
+        }
+        nav {
+            align-items: center;
+            display: flex;
+        }
+        nav a {
+            color: black;
+            margin-left: 100px;
+            margin-right: 50px;
+            text-decoration: none;
+            font-size: 1.8vw;
+            margin-top: .5vw;
+        }
+        #about {
+            width: 100%;
+            height: 100vh;
+            border-bottom: 1px solid rgb(49, 49, 49);
+        }
+        #about h2 {
+            font-size: 4vw;
+            padding-top: 7vw;
+            margin-bottom: 1vw;
+            margin-left: 2vw;
+        }
+        .left, .right {
+            float: left;
+            width: 50%;
+            height: 100vh;
+        }
+        .left img {
+            width: 90%;
+            height: 80vh;
+            margin-left: 1vw;
+            margin-top: 7vw;
+        }
+        .right p {
+            font-size: 2vw;
+            margin-left: 2vw;
+            color: black;
+        }
+        #projects {
+            width: 100%;
+            height: 100vh;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+        }
+        .container div {
+            width: 90%;
+            height: 35vh;
+            background-color: rgb(29, 29, 29);
+            margin-bottom: 2vw;
+            margin-left: 1.5vw;
+        }
+        div h3 {
+            color: #fefefe;
+            text-align: center;
+            margin-top: 2vw;
+            font-size: 1.8vw;
+            margin-bottom: 1vw;
+        }
+        div h4 {
+            color: #fefefe;
+            font-size: 1.2vw;
+            margin-left: 1vw;
+        }
+        div p {
+            color: #fefefe;
+            margin-left: 1vw;
+        }
+        div button {
+            background-color: rgb(6, 6, 177);
+            padding: 5px;
+            margin-left: 8.5vw;
+            margin-top: 1.2vw;
+            width: 40%;
+            height: 5vh;
+        }
+        button:hover {
+            background-color: rgb(5, 5, 136);
+        }
+        div a {
+            color: #fefefe;
+            text-decoration: none;
+        }
+        h2 {
+            text-align: center;
+            padding-top: 4.5vw;
+            margin-bottom: 1vw;
+            font-size: 4vw;
+        }
+        #contact {
+            background-color: rgb(22, 22, 173);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #contact p{
+            padding-left: 5vw;
+            font-size: 2vw;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Portfolio</h1>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#projects">Project</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <section id="about">
+
+        <div class="left">
+            <img src="att.Oo-7TF4wlNkvkTsrfyPYR1v8V226q325ry9wxz6jx4Q.jpg" alt="">
+        </div>
+        <div class="right">
+            <h2>About Me:</h2>
+            <p>Name: Jess Rey Esteva <br><br>Age: 21 <br><br> Course: Bachelor of Science in Information Technology <br><br>Year level: 2nd Year <br><br>Address: Brgy. Pughanan, Lambunao, IloIlo <br><br>Hobby: Basketball</p>
+        </div>
+    </section>
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="container">
+            <div>
+                <h3>Activity Name: Home Page</h3>
+                <h4>Description:</h4>
+                <p>A homepage is the main landing page of a website, designed to introduce visitors to the site's purpose. It typically includes a logo, navigation menu, a large banner or hero image, key content sections (like services or products), and calls-to-action (CTAs) to guide users.</p>
+                <button><a href="https://estevawebpage.netlify.app/">View Activity</a></button>
+            </div>
+            <div>
+                <h3>Activity Name:  Calculator Design</h3>
+                <h4>Description:</h4>
+                <p>A calculator design features a simple, grid-based layout with number keys (0-9) and operation buttons (add, subtraction, multiplication, division) arranged for easy access. It includes a display screen at the top to show input or results, and has clear and delete button.</p>
+                <button><a href="https://esteva-calcu.netlify.app/ " target="_blank">View Activity</a></button>
+            </div>
+            <div>
+                <h3>Activity Name:Individual Webpage</h3>
+                <h4>Description:</h4>
+                <p>An individual webpage designed with passion for your interests would feature sections dedicated to your favorite hobbies, whether it’s a blog, gallery, or personal projects. The layout would be customized to reflect your personality, with vibrant colors, engaging visuals.</p>
+                <button><a href="https://estevaindividual.netlify.app/" target="_blank">View Activity</a></button>
+            </div>
+            <div>
+                <h3>Activity Name: Responsive Web</h3>
+                <h4>Description:</h4>
+                <p>Responsive web design is an approach that ensures a website adapts seamlessly to different screen sizes and devices, such as desktops, tablets, and smartphones. It uses flexible layouts, images, and CSS media queries to provide an optimal viewing experience across various platforms.</p>
+                <button><a href="https://estevaresponsive.netlify.app/" target="_blank">View Project</a></button>
+            </div>
+            <div>
+                <h3>Activity Name: Sign up and Log in</h3>
+                <h4>Description:</h4>
+                <p>Signup is the process where a user creates a new account by providing required information such as their name, email, and password. Login allows registered users to access their account by entering their credentials, typically an email and password, to verify their identity and access personalized features.</p>
+                <button><a href="https://estevasignup.netlify.app/" target="_blank">View Activity</a></button>
+            </div>
+        </div>
+
+    </section>
+    <section id="contact" style="height: 20vh; width: 100%;">
+        <p><span style="color: white;">Facebook:</span>  Jessrey Esteva</p>
+        <p><span style="color: white;">Contact no.:</span>  09258434567</p>
+        <p><span style="color: white;">Email:</span>  jessrey1123@gmail.com</p>
+    </section>
+</body>
+</html>
